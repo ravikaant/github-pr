@@ -1,7 +1,6 @@
 package com.example.prviewer.network
 
-import com.example.prviewer.constant
-import com.example.prviewer.model.PRModel
+import com.example.prviewer.utils.constant
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

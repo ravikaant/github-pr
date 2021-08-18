@@ -1,4 +1,4 @@
-package com.example.prviewer
+package com.example.prviewer.utils
 
 object constant {
     val BASE_URL = "https://api.github.com/";
