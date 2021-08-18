@@ -1,4 +1,4 @@
-package com.example.prviewer.network
+package com.example.prviewer.utils.network
 
 import com.example.prviewer.utils.constant
 import retrofit2.Retrofit

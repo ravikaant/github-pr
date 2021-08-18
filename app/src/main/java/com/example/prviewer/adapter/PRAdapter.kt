@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prviewer.R
 import com.example.prviewer.databinding.PrItemBinding
 import com.example.prviewer.model.PRModel
+import com.example.prviewer.utils.PrItemClickListener
 
 
-class PRAdapter (private val prList : List<PRModel>?) :
+class PRAdapter (
+    private val prList : List<PRModel>?,
+    private val itemClickListener: PrItemClickListener
+    ) :
     RecyclerView.Adapter<PRAdapter.PRViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PRViewHolder {
@@ -26,6 +30,9 @@ class PRAdapter (private val prList : List<PRModel>?) :
 
     override fun onBindViewHolder(holder: PRViewHolder, position: Int) {
         holder.prItemBinding.prModel = prList?.get(position)
+        holder.prItemBinding.root.setOnClickListener {
+            itemClickListener.onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {
