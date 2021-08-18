@@ -5,10 +5,13 @@ import com.example.prviewer.network.ApiClient
 import com.example.prviewer.network.ApiService
 import retrofit2.Response
 
-class PRRepository (private val apiService: ApiService,private val state : String)
+class PRRepository (
+    private val apiService: ApiService,
+    private val state : String
+    )
 {
-    suspend fun getAllClosedPR() : List<PRModel>? {
-        val response : Response<List<PRModel>> = apiService.getClosedPR(state)
+    suspend fun getPullRequests() : List<PRModel>? {
+        val response : Response<List<PRModel>> = apiService.getPullRequests(state)
         if(response.isSuccessful){
             return response.body()
         }
