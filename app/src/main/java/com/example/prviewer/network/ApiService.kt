@@ -8,6 +8,6 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("/repos/torvalds/linux/pulls")
-    suspend fun getClosedPR(@Query("state") state : String) : Response<List<PRModel>>
+    suspend fun getPullRequests(@Query("state") state : String) : Response<List<PRModel>>
 
 }
