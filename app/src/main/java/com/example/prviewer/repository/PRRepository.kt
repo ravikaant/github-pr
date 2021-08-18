@@ -1,8 +1,7 @@
 package com.example.prviewer.repository
 
 import com.example.prviewer.model.PRModel
-import com.example.prviewer.network.ApiClient
-import com.example.prviewer.network.ApiService
+import com.example.prviewer.utils.network.ApiService
 import retrofit2.Response
 
 class PRRepository (

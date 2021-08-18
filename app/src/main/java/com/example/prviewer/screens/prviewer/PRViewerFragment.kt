@@ -6,18 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.prviewer.R
 import com.example.prviewer.adapter.PRAdapter
 import com.example.prviewer.utils.constant
-import com.example.prviewer.network.ApiClient
+import com.example.prviewer.utils.network.ApiClient
 import com.example.prviewer.repository.PRRepository
+import com.example.prviewer.utils.PrItemClickListener
 import kotlinx.android.synthetic.main.p_r_viewer_fragment.*
 
-class PRViewerFragment : Fragment() {
+class PRViewerFragment : Fragment() ,PrItemClickListener{
 
     private lateinit var viewModel: PRViewerViewModel
     private lateinit var prViewModelFactory: PRViewModelFactory
@@ -37,7 +37,6 @@ class PRViewerFragment : Fragment() {
 
     private fun setUpViewModel(){
         val prRepository = PRRepository(ApiClient.getInstance(), constant.CLOSED)
-
         prViewModelFactory = PRViewModelFactory(prRepository)
         viewModel = ViewModelProvider(this,prViewModelFactory).get(PRViewerViewModel::class.java,)
 
@@ -45,16 +44,13 @@ class PRViewerFragment : Fragment() {
             recycler_view.also {
                 it.layoutManager = LinearLayoutManager(requireContext())
                 it.setHasFixedSize(true)
-                it.adapter = PRAdapter(prModel)
-//                val itemDecoration=DividerItemDecoration(recycler_view.context,
-//                    LinearLayoutManager(requireContext()).orientation)
-//                it.addItemDecoration(itemDecoration)
-            }
+                it.adapter = PRAdapter(prModel,this)
 
+            }
         })
     }
 
-
-
-
+    override fun onItemClick(position: Int) {
+        Toast.makeText(this.context,"$position item is clicked",Toast.LENGTH_SHORT).show()
+    }
 }
