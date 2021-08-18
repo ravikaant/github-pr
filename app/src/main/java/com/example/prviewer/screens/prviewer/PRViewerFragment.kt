@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.prviewer.R
 import com.example.prviewer.adapter.PRAdapter
 import com.example.prviewer.utils.constant
@@ -44,6 +46,9 @@ class PRViewerFragment : Fragment() {
                 it.layoutManager = LinearLayoutManager(requireContext())
                 it.setHasFixedSize(true)
                 it.adapter = PRAdapter(prModel)
+//                val itemDecoration=DividerItemDecoration(recycler_view.context,
+//                    LinearLayoutManager(requireContext()).orientation)
+//                it.addItemDecoration(itemDecoration)
             }
 
         })
