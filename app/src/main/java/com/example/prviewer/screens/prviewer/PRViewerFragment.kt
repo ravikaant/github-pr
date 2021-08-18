@@ -33,6 +33,7 @@ class PRViewerFragment : Fragment() ,PrItemClickListener{
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setUpViewModel()
+        setupProgressBar()
     }
 
     private fun setUpViewModel(){
@@ -49,6 +50,15 @@ class PRViewerFragment : Fragment() ,PrItemClickListener{
             }
         })
     }
+
+    private fun setupProgressBar(){
+        viewModel.isLoading().observe(viewLifecycleOwner, Observer {
+            it ?.let{
+                progress_bar.visibility = if(it) View.VISIBLE else View.GONE
+        }
+        })
+    }
+
 
     override fun onItemClick(position: Int) {
         Toast.makeText(this.context,"$position item is clicked",Toast.LENGTH_SHORT).show()
