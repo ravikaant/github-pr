@@ -1,4 +1,4 @@
-package com.example.prviewer.screens
+package com.example.prviewer.screens.prviewer
 
 import androidx.lifecycle.ViewModel
 
