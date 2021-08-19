@@ -2,8 +2,8 @@ package com.example.prviewer.utils
 
 object constant {
 
-    val USERNAME  = "git-kishan"
-    val REPONAME  = "PR-viewer"
+    val USERNAME  = "torvalds"
+    val REPONAME  = "linux"
     val BASE_URL = "https://api.github.com/";
 
     val CLOSED = "closed"
