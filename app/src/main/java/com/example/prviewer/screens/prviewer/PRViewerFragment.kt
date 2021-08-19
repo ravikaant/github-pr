@@ -25,7 +25,7 @@ class PRViewerFragment : Fragment() ,PrItemClickListener{
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View?{
 
         return inflater.inflate(R.layout.p_r_viewer_fragment, container, false)
     }
@@ -33,32 +33,30 @@ class PRViewerFragment : Fragment() ,PrItemClickListener{
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setUpViewModel()
-        setupProgressBar()
+        setUpObserver()
     }
 
     private fun setUpViewModel(){
-        val prRepository = PRRepository(ApiClient.getInstance(),"git-kishan","PR-viewer", constant.CLOSED)
+        val prRepository = PRRepository(ApiClient.getInstance(),constant.USERNAME,constant.REPONAME, constant.CLOSED)
         prViewModelFactory = PRViewModelFactory(prRepository)
         viewModel = ViewModelProvider(this,prViewModelFactory).get(PRViewerViewModel::class.java,)
+    }
+
+    private fun setUpObserver(){
+        viewModel.isLoading().observe(viewLifecycleOwner, Observer {
+            it ?.let{
+                progress_bar.visibility = if(it) View.VISIBLE else View.GONE
+            }
+        })
 
         viewModel.prLiveData.observe(viewLifecycleOwner, Observer {prModel ->
             recycler_view.also {
                 it.layoutManager = LinearLayoutManager(requireContext())
                 it.setHasFixedSize(true)
                 it.adapter = PRAdapter(prModel,this)
-
             }
         })
     }
-
-    private fun setupProgressBar(){
-        viewModel.isLoading().observe(viewLifecycleOwner, Observer {
-            it ?.let{
-                progress_bar.visibility = if(it) View.VISIBLE else View.GONE
-        }
-        })
-    }
-
 
     override fun onItemClick(position: Int) {
         Toast.makeText(this.context,"$position item is clicked",Toast.LENGTH_SHORT).show()
