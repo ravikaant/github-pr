@@ -37,7 +37,7 @@ class PRViewerFragment : Fragment() ,PrItemClickListener{
     }
 
     private fun setUpViewModel(){
-        val prRepository = PRRepository(ApiClient.getInstance(), constant.CLOSED)
+        val prRepository = PRRepository(ApiClient.getInstance(),"git-kishan","PR-viewer", constant.CLOSED)
         prViewModelFactory = PRViewModelFactory(prRepository)
         viewModel = ViewModelProvider(this,prViewModelFactory).get(PRViewerViewModel::class.java,)
 
