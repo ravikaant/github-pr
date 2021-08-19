@@ -13,20 +13,15 @@ import com.example.prviewer.utils.PrItemClickListener
 class PRAdapter (
     private val prList : List<PRModel>?,
     private val itemClickListener: PrItemClickListener
-    ) :
-    RecyclerView.Adapter<PRAdapter.PRViewHolder>() {
+    )
+    : RecyclerView.Adapter<PRAdapter.PRViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PRViewHolder {
         return PRViewHolder(
-                    DataBindingUtil.inflate(
-                        LayoutInflater.from(parent.context),
-                        R.layout.pr_item,
-                        parent,
-                        false
-                    )
+                    DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.pr_item,
+                        parent, false)
         )
     }
-
 
     override fun onBindViewHolder(holder: PRViewHolder, position: Int) {
         holder.prItemBinding.prModel = prList?.get(position)
@@ -40,12 +35,9 @@ class PRAdapter (
     }
 
     class PRViewHolder(
-        val prItemBinding: PrItemBinding
-    ) : RecyclerView.ViewHolder(prItemBinding.root) {
+         val prItemBinding: PrItemBinding
+        )
+        : RecyclerView.ViewHolder(prItemBinding.root){
 
-
-
-    }
-
-
+        }
 }
